@@ -2,7 +2,10 @@
     <div id="app">
         <div class="header">
 
-            <h2 class="logo-header">Logo</h2>
+            <img alt="STW logo" class="logo-header" src="../../assets/logo.png"  height="50" />
+
+            <div v-if="loggedIn" class="filler-login"></div>
+            <div v-if="!loggedIn" class="filler-logout"></div>
 
             <ul class="nav">
             <!-- <li><a href="/">Home</a></li>
@@ -15,11 +18,17 @@
             <li v-if="!loggedIn"><router-link :to="{ name: 'login' }">Login</router-link></li>
             <li v-if="!loggedIn"><router-link :to="{ name: 'register' }">Register</router-link></li>
             <li v-if="loggedIn"><router-link :to="{ name: 'logout' }">Logout</router-link></li>
-        </ul>
+            </ul>
+            
         </div>
         
+        <transition name="router-animation" 
+                    enter-active-class="animated fadeIn" 
+                    leave-active-class="animated fadeOut">
 
-        <router-view></router-view>
+          <router-view></router-view>
+
+        </transition>
 
     </div>
 </template>
@@ -37,7 +46,7 @@ export default {
 </script>
 
 <style lang="scss">
-  
+  @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css");
 
     * {
         box-sizing: border-box;
@@ -61,11 +70,12 @@ export default {
 
     .header {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start;
         align-items: center;
-        background: #F5F8FA;
+        background: #eef5fa;
         border-bottom: 1px solid lightgray;
         margin-bottom: 24px;
+
     }
 
     .nav {
@@ -85,11 +95,29 @@ export default {
         letter-spacing: .1rem;
         text-decoration: none;
         text-transform: uppercase;
+        &:hover {
+          color: darken(#636b6f, 20%);
+        }       
     }
-label {
-    display: block;
-    margin-bottom: 4px;
-  }
+
+    ul li:hover {
+      transform: scale(1.1);
+    }
+
+    .filler-login {
+      padding-right: 550px;
+    }
+
+    .filler-logout {
+      padding-right: 500px;
+    }
+
+
+    label {
+        display: block;
+        margin-bottom: 4px;
+      }
+
   .login-heading {
     margin-bottom: 16px;
   }
@@ -151,19 +179,8 @@ label {
     border-radius: 4px;
   }
 
-  .form-error {
-    font-size: 16px;
-    color: #a94442;
-  }
 
-  .input-error {
-    border: 1px solid red;
-  }
-
-  .page-wrapper {
-    animation-duration: 0.2s;
-  }
-
+  //Spinner
   .lds-ring-container {
     position: absolute;
     right: 50%;

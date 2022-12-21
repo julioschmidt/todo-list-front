@@ -6,7 +6,7 @@ import TodoList from './components/TodoList.vue'
   <header>
 
     <div class="container">
-      <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+      <img alt="STW logo" class="logo" src="./assets/logo.png"  height="125" />
       <TodoList></TodoList>
     </div>
 

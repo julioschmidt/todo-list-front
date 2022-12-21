@@ -2,6 +2,7 @@
 
 <template>
   <div>
+    <div class="name-container">Bem-vindo, {{  name }}!</div>
     <input type="text" class="todo-input" 
     placeholder="What needs to be done" 
     v-model="newTodo"
@@ -59,16 +60,16 @@ export default {
         return {
             newTodo:'',
             idForTodo: 3,
-            beforeEditCache: '',
+            name: '',
         }
     },
 
     created() {
         this.$store.dispatch('retrieveTodos')
-        /* this.$store.dispatch('retrieveName')
+        this.$store.dispatch('retrieveName')
             .then(response => {
-            this.name = response.data.name
-        }) */
+                this.name = response.data.name
+            })
     },
 
     computed: {
@@ -102,7 +103,6 @@ export default {
 
 <style lang="scss">
 
-    @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css");
 
     .todo-input {
         width: 100%;
@@ -173,6 +173,10 @@ export default {
     .extra-container div {
         display: flex;
         gap: 4px;
+    }
+
+    .name-container {
+        margin-bottom: 16px;
     }
 
     button {

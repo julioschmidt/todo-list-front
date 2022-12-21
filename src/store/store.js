@@ -6,12 +6,17 @@ axios.defaults.baseURL = 'http://todo-laravel.test/api'
 
 export const store = createStore({
     state: {
+        successMessage: '',
         filter: 'all',
         todos: [],
         token: localStorage.getItem('access_token') || null,
     },
 
     getters: {
+        successMessage(state) {
+          return state.successMessage
+        },
+
         loggedIn(state) {
           return state.token !== null
         },
@@ -87,10 +92,45 @@ export const store = createStore({
 
         destroyToken(state) {
           state.token = null
+        },
+
+        clearTodos(state) {
+          state.todos = []
+        },
+
+        defineSuccessMessage(state, message) {
+          state.successMessage = message
         }
 
       },
       actions: {
+
+        destroySuccessMessage(context) {
+          context.commit('defineSuccessMessage', '')
+        },
+
+        defineSuccessMessage(context, message) {
+          context.commit('defineSuccessMessage', message)
+        },
+
+        retrieveName(context) {
+          axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.state.token
+
+          return new Promise((resolve, reject) => {
+            axios.get('/user')
+            .then(response => {
+              resolve(response)
+            })
+            .catch(error => {
+              reject(error)
+            })
+          })
+          
+        },
+
+        clearTodos(context) {
+          context.commit('clearTodos')
+        },
 
         registerUser(context, data) {
           return new Promise((resolve, reject) => {
@@ -152,6 +192,9 @@ export const store = createStore({
         },
 
         retrieveTodos(context) {
+
+          axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.state.token
+
           axios.get('/todos')
             .then(response => {
               context.commit('retrieveTodos', response.data)
