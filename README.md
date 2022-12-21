@@ -52,7 +52,7 @@ npm run dev
 npm run build
 ```
 
-## Todo-Laravel
+## 🔒 Todo-Laravel
 In order to run the full application, make sure you have the [TODO-LARAVEL](https://github.com/julioschmidt/todo-laravel) configured and running
 
 [⬆ Back to the top](#todo-list-front)<br>
