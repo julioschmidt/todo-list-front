@@ -9,7 +9,7 @@
 
 ![preview](./.github/preview.png)
 
-> Todo App front-end made with Vue 3 with the purpose of learning new technologies.
+> Todo App front-end made in partnership with STW using Vue 3 with the purpose of learning new technologies.
 
 ## ⚙️ Technologies
 
@@ -23,7 +23,8 @@
 
 ## 📞 Contact
 
-julio.schmidt@universo.univates.br
+* [Email](julio.schmidt@universo.univates.br)
+* [STW](https://www.stwautomacao.com.br/)
 
 
 ## 💻 Pre Requirements
