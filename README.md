@@ -24,8 +24,6 @@
 ## 📞 Contact
 
 * [Email](julio.schmidt@universo.univates.br)
-* [STW](https://www.stwautomacao.com.br/)
-
 
 ## 💻 Pre Requirements
 
